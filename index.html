@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Outlook Follow-Up Checker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div><h1>Outlook Follow-Up Checker</h1><p>Find sent messages that may need your attention.</p></div>
+      <div id="authState" class="pill">Not signed in</div>
+    </header>
+
+    <section id="setup" class="card setup">
+      <h2>Microsoft 365 connection</h2>
+      <p>Enter the Application (client) ID from your Microsoft Entra app registration. No secret is used or stored.</p>
+      <div class="row">
+        <input id="clientId" type="text" autocomplete="off" placeholder="Application (client) ID">
+        <button id="saveClient">Save</button>
+        <button id="signIn" class="primary">Sign in</button>
+      </div>
+      <small>Requested delegated permissions: User.Read and Mail.ReadBasic.</small>
+    </section>
+
+    <section class="card controls">
+      <div class="control"><label>Look back</label><select id="days"><option>7</option><option selected>14</option><option>30</option><option>60</option><option>90</option></select><span>days</span></div>
+      <label class="check"><input id="needs" type="checkbox" checked> Only needs follow-up</label>
+      <label class="check"><input id="high" type="checkbox"> High importance only</label>
+      <label class="check"><input id="flagged" type="checkbox"> Flagged only</label>
+      <button id="scan" class="primary">Scan</button>
+      <button id="export">Export CSV</button>
+    </section>
+
+    <section class="card filterbar">
+      <input id="search" type="search" placeholder="Search subject, recipient, responder…">
+      <select id="show"><option value="all">All sent messages</option><option value="needs">Needs follow-up</option><option value="replied">Replied messages</option></select>
+    </section>
+
+    <section class="card tablewrap">
+      <div id="status" class="status">Sign in, then press Scan.</div>
+      <table>
+        <thead><tr><th>Sent</th><th>Subject</th><th>To</th><th>Priority</th><th>Flag</th><th>Replied</th><th>Replied by</th><th>Actions</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <footer><span id="counts">0 messages</span><span>Metadata only · no body or attachments</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
