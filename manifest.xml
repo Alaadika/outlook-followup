@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" xsi:type="MailApp">
+  <Id>9c94f967-5f18-49c7-86c7-b7d9d26f1f12</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Outlook Follow-Up</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Outlook Follow-Up Checker"/>
+  <Description DefaultValue="Scan sent messages and identify conversations that may need follow-up."/>
+  <IconUrl DefaultValue="https://alaadika.github.io/outlook-followup/icon-64.svg"/>
+  <HighResolutionIconUrl DefaultValue="https://alaadika.github.io/outlook-followup/icon-128.svg"/>
+  <SupportUrl DefaultValue="https://github.com/Alaadika/outlook-followup"/>
+  <AppDomains><AppDomain>https://alaadika.github.io</AppDomain><AppDomain>https://login.microsoftonline.com</AppDomain><AppDomain>https://graph.microsoft.com</AppDomain></AppDomains>
+  <Hosts><Host Name="Mailbox"/></Hosts>
+  <Requirements><Sets><Set Name="Mailbox" MinVersion="1.3"/></Sets></Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead"><DesktopSettings><SourceLocation DefaultValue="https://alaadika.github.io/outlook-followup/index.html"/><RequestedHeight>450</RequestedHeight></DesktopSettings></Form>
+  </FormSettings>
+  <Permissions>ReadItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or"><Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/><Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Read"/></Rule>
+  <DisableEntityHighlighting>false</DisableEntityHighlighting>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Requirements><bt:Sets DefaultMinVersion="1.3"><bt:Set Name="Mailbox"/></bt:Sets></Requirements>
+    <Hosts><Host xsi:type="MailHost"><DesktopFormFactor>
+      <FunctionFile resid="Commands.Url"/>
+      <ExtensionPoint xsi:type="MessageReadCommandSurface"><OfficeTab id="TabDefault"><Group id="FollowUp.Group"><Label resid="Group.Label"/><Control xsi:type="Button" id="FollowUp.Open"><Label resid="Button.Label"/><Supertip><Title resid="Button.Label"/><Description resid="Button.Desc"/></Supertip><Icon><bt:Image size="16" resid="Icon.16"/><bt:Image size="32" resid="Icon.32"/><bt:Image size="80" resid="Icon.80"/></Icon><Action xsi:type="ShowTaskpane"><SourceLocation resid="Taskpane.Url"/></Action></Control></Group></OfficeTab></ExtensionPoint>
+    </DesktopFormFactor></Host></Hosts>
+    <Resources>
+      <bt:Images><bt:Image id="Icon.16" DefaultValue="https://alaadika.github.io/outlook-followup/icon-64.svg"/><bt:Image id="Icon.32" DefaultValue="https://alaadika.github.io/outlook-followup/icon-64.svg"/><bt:Image id="Icon.80" DefaultValue="https://alaadika.github.io/outlook-followup/icon-128.svg"/></bt:Images>
+      <bt:Urls><bt:Url id="Commands.Url" DefaultValue="https://alaadika.github.io/outlook-followup/index.html"/><bt:Url id="Taskpane.Url" DefaultValue="https://alaadika.github.io/outlook-followup/index.html"/></bt:Urls>
+      <bt:ShortStrings><bt:String id="Group.Label" DefaultValue="Follow-Up"/><bt:String id="Button.Label" DefaultValue="Follow-Up Checker"/></bt:ShortStrings>
+      <bt:LongStrings><bt:String id="Button.Desc" DefaultValue="Open the Outlook Follow-Up Checker."/></bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
